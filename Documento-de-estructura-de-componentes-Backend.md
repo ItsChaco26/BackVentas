@@ -3,7 +3,8 @@
 Este documento describe la organización de los principales paquetes y componentes del backend de la aplicación. El proyecto está diseñado siguiendo los principios de arquitectura por capas y separación de responsabilidades, además utiliza el patrón CQRS, esto permite que el proyecto posea una estructura modular, mantenible y escalable.
 
 ---
-
+## Configuración del entorno
+#TODO
 ---
 
 ## Estructura General del Proyecto
