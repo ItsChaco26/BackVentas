@@ -28,6 +28,25 @@ main
         └── BackendVentasApplication.java
 └── resources
 ```
+
+---
+## Tecnologías
+
+- **Lenguaje de Programacion:** Java
+- **JDK:** versión 21
+- **Spring Boot:** se utiliza  Spring Boot 3.4.4 para la gestión de la aplicación y la implementación de servicios web.
+- **Spring Cloud Version:** versión compatible con Spring Boot 3.4.4, usado para facilitar la comunicación entre microservicios y gestionar la configuración distribuida.
+- **Spring Dependency Management:** encargado de manejar las bibliotecas necesarias para el proyecto, trabajará en conjunto con el gestor de depdencias empleado
+- **Base de Datos:** falta especificar (NoSQL o SQL)
+- **Eureka:**  servidor de descubrimiento de servicios de Spring Cloud, que se empleará para que los microservicios se registren y descubran entre sí de manera automática, incluyendo balanceo de carga y manejo de concurrencia.
+
+- **Gestor de Dependencias:** Gradle, empleados para compilar, empaquetar y gestionar el ciclo de vida del proyecto.
+  - **Hibernate (SQL):** como la implementación de JPA por defecto en Spring Boot. Hibernate se encarga de transformar objetos de Java en registros de base de datos y viceversa, permitiendo trabajar con datos de manera más intuitiva y sin necesidad de escribir consultas SQL manualmente. Además, Hibernate optimiza el rendimiento con características como caching, lazy loading y gestión automática de transacciones.
+- **Configuraciones Adicionales:**
+  - ...falta especificar
+---
+
+
 ---
 ## Paquetes y Componentes
 - **ucr.ac.cr.BackendVentas:** Es el paquete raíz del proyecto. Contiene todos los submódulos organizados de acuerdo con su responsabilidad dentro de la arquitectura.
@@ -47,6 +66,108 @@ main
 - **services:** Contiene la lógica de negocio reutilizable y centralizada que puede ser utilizada tanto por controladores (api/rests) como por comandos o queries. Ayuda a mantener una lógica más limpia y desacoplada del resto del sistema.
 - **resources:** Contiene archivos de configuración y recursos estáticos como application.properties o application.yml, necesarios para la ejecución del backend.
 ---
+
+
+---
+## Configuración y Levantamiento del Entorno
+
+### 1. Levantar Eureka: 
+Eureka es el servidor de descubrimiento de servicios de Spring Cloud, utilizado para que los microservicios se registren y descubran entre sí de manera automática.
+
+**Pasos para levantar Eureka:**
+
+* Navegar al directorio de Eureka:
+
+    ```powershell
+    cd <ruta-del-proyecto>\eureka
+    ```
+
+* Usar Gradle para construir y ejecutar Eureka:
+
+    ```powershell
+    gradle wrapper
+    .\gradlew.bat bootRun
+    ```
+
+Eureka estaría corriendo en el puerto 8761 (por defecto). Donde para acceder al panel de control de Eureka se debe abrir la siguiente URL en el navegador:
+
+[http://localhost:8761](http://localhost:8761)
+
+Aquí se podrá ver los servicios registrados y gestionarlos.
+
+### 2. Levantar Gateway (API Gateway)
+
+El API Gateway es un servicio que se encarga de gestionar las solicitudes que llegan a los microservicios y enrutarlas al servicio adecuado.
+
+**Pasos para levantar Gateway:**
+
+* Navegar al directorio del Gateway:
+
+    ```powershell
+    cd <ruta-del-proyecto>\gateway
+    ```
+
+* Usar Gradle para construir y ejecutar el Gateway:
+
+    ```powershell
+    gradle wrapper
+    .\gradlew.bat bootRun
+    ```
+
+El Gateway se ejecutará en el puerto 8080 por defecto, al cual se accede través de la URL:
+
+[http://localhost:8080](http://localhost:8080)
+
+Las solicitudes entrantes serán redirigidas a los microservicios registrados en Eureka.
+
+### 3. Levantar Servicio de Autenticación (Authentication Service)
+
+El servicio de autenticación maneja la validación de usuarios y la emisión de tokens (por ejemplo, JWT).
+
+**Pasos para levantar el Servicio de Autenticación:**
+
+* Navegar al directorio del Servicio de Autenticación:
+
+    ```powershell
+    cd <ruta-del-proyecto>\authentication-service
+    ```
+
+* Usar Gradle para construir y ejecutar el Servicio de Autenticación:
+
+    ```powershell
+    gradle wrapper
+    .\gradlew.bat bootRun
+    ```
+
+El servicio se ejecutará en el puerto 8081, y estará accesible a través del Gateway en [http://localhost:8080/authentication-service](http://localhost:8080/authentication-service).
+
+### 4. Levantar Servicio Básico (Basic Service)
+
+Este servicio maneja operaciones básicas de negocio y puede interactuar con otros servicios.
+
+**Pasos para levantar el Basic Service:**
+
+* Navegar al directorio del Basic Service:
+
+    ```powershell
+    cd <ruta-del-proyecto>\basic-service
+    ```
+
+* Usar Gradle para construir y ejecutar el Basic Service:
+
+    ```powershell
+    gradle wrapper
+    .\gradlew.bat bootRun
+    ```
+
+El servicio se ejecutará en el puerto 8082, y estará accesible a través del Gateway en [http://localhost:8080/basic-service](http://localhost:8080/basic-service).
+
+### Configuración Adicional
+
+* **Base de Datos:** *pendiente.
+* **Puertos y URLs:** *pendiente (se usan genéricos)
+---
+
 ## Bibliografía
 - A. Factor, “Qué es la arquitectura en capas: descubre sus ventajas y ejemplos,” Latam Tech - Transformación Digital, Sep. 14, 2023. https://latamtech-sac.com/que-es-la-arquitectura-en-capas-descubre-sus-ventajas-y-ejemplos/
 - K. P. Singh, “System design: Command and Query Responsibility Segregation (CQRS),” DEV Community, Sep. 15, 2022. https://dev.to/karanpratapsingh/system-design-command-and-query-responsibility-segregation-cqrs-1kl1
