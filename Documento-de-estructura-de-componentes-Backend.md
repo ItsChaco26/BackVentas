@@ -42,3 +42,8 @@ main
 - **models:** Contiene clases de modelo de dominio que encapsulan reglas de negocio o estructuras reutilizables dentro del sistema. Estas clases pueden ser independientes de la persistencia o la exposición vía API.
 - **services:** Contiene la lógica de negocio reutilizable y centralizada que puede ser utilizada tanto por controladores (api/rests) como por comandos o queries. Ayuda a mantener una lógica más limpia y desacoplada del resto del sistema.
 - **resources:** Contiene archivos de configuración y recursos estáticos como application.properties o application.yml, necesarios para la ejecución del backend.
+
+
+## Bibliografías
+- A. Factor, “Qué es la arquitectura en capas: descubre sus ventajas y ejemplos,” Latam Tech - Transformación Digital, Sep. 14, 2023. https://latamtech-sac.com/que-es-la-arquitectura-en-capas-descubre-sus-ventajas-y-ejemplos/
+- K. P. Singh, “System design: Command and Query Responsibility Segregation (CQRS),” DEV Community, Sep. 15, 2022. https://dev.to/karanpratapsingh/system-design-command-and-query-responsibility-segregation-cqrs-1kl1
